@@ -1,0 +1,189 @@
+/* GIF Background */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: url("images/bg.gif") no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  /* Dark overlay so text is visible */
+  body::before {
+    content:"";
+    position: fixed;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.5);
+    top:0;
+    left:0;
+    z-index:-1;
+  }
+  
+  /* Animation Screen */
+  #animation {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.6);
+    flex-wrap: wrap;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .profile:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  }
+  
+  .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .profile:hover img {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px rgba(255,255,255,0.45);
+  }
+  
+  /* Center Card */
+  .container {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+  }
+  
+  .card {
+    text-align: center;
+    background: rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 350px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px) scale(1.01);
+    background: rgba(255,255,255,0.16);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  }
+  
+  .card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid rgba(255,255,255,0.75);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+
+  .card:hover img {
+    transform: scale(1.08);
+    border-color: rgba(255,255,255,1);
+    box-shadow: 0 0 18px rgba(255,255,255,0.5);
+  }
+
+  .flower-btn {
+    margin-top: 14px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #ff5ec7, #ff8f5e);
+    box-shadow: 0 8px 20px rgba(255, 94, 199, 0.35);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .flower-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(255, 94, 199, 0.45);
+    filter: brightness(1.06);
+  }
+
+  .flower-btn:active {
+    transform: scale(0.97);
+  }
+
+  .flower-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1200;
+  }
+
+  .flower-petal {
+    position: fixed;
+    left: var(--x);
+    top: var(--y);
+    font-size: var(--size, 26px);
+    transform: translate(-50%, -50%);
+    animation: bloom 1200ms ease-out forwards;
+    will-change: transform, opacity;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+
+  @keyframes bloom {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.35) rotate(0deg);
+    }
+    15% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(
+        calc(-50% + var(--dx)),
+        calc(-50% + var(--dy))
+      ) scale(1.35) rotate(var(--rot));
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    #animation { font-size: 24px; padding: 10px; }
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .navbar span { margin-top: 5px; font-size: 14px; }
+    .card { padding: 20px; }
+    .card img { width: 90px; height: 90px; }
+    .flower-btn { width: 100%; font-size: 15px; }
+    h1 { font-size: 22px; }
+    p { font-size: 14px; }
+  }

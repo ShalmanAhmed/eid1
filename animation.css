@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #312261, #0b1022 55%, #05080f);
+  color: #fff;
+}
+
+.glow {
+  position: fixed;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255, 137, 203, 0.45), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(130, 180, 255, 0.35), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(255, 212, 120, 0.26), transparent 42%);
+  filter: blur(26px);
+  animation: pulse 4s ease-in-out infinite alternate;
+}
+
+.message-card {
+  z-index: 2;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  padding: 20px 16px;
+  width: min(86vw, 330px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.message-card h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+}
+
+.message-card p {
+  margin: 0 0 14px;
+  opacity: 0.9;
+}
+
+#playAgain {
+  border: none;
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #ff5ec7, #ff8f5e);
+  box-shadow: 0 8px 20px rgba(255, 94, 199, 0.35);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.back-link {
+  display: block;
+  margin-top: 14px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.flower-stage {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  font-size: var(--size, 28px);
+  transform: translate(-50%, -50%);
+  animation: bloom 1700ms cubic-bezier(0.12, 0.88, 0.22, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+@keyframes bloom {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(-50% + var(--dx)),
+      calc(-50% + var(--dy))
+    ) scale(1.25) rotate(var(--rot));
+    opacity: 0;
+  }
+}
